@@ -6,13 +6,13 @@ module BST : AbstractBST =
     type bstree =
       | NIL
       | BSTree of bstree * E.t * bstree
-                
     
+    (* PRIVATE FUNCTIONS *)
+
     let bstree_isLeaf bst = 
       match bst with
-      | NIL | BSTree(NIL, _, NIL) -> true
+      | BSTree(NIL, _, NIL) -> true
       | _ -> false 
-    
     
     let bstree_left = function
       | NIL -> failwith "bstree_left : the bstree is a leaf"
@@ -73,6 +73,7 @@ module BST : AbstractBST =
           | BSTree(beta, key, gamma) -> BSTree((bstree_setRight bst beta), key, gamma)             
     
     
+    (* PUBLIC FUNCTIONS *)
     let create = NIL
     
     
@@ -93,7 +94,7 @@ module BST : AbstractBST =
     
     let rec remove bst value =
       match bst with
-      | NIL -> failwith "bstree_remove : the bstree is a leaf" 
+      | NIL -> failwith "bstree_remove : the value is not in tree" 
       | BSTree(left, key, right) ->
           if value = key then
             if bstree_isLeaf bst then
