@@ -7,12 +7,15 @@ module BST : AbstractBST =
       | NIL
       | BSTree of bstree * E.t * bstree
     
+    
     (* PRIVATE FUNCTIONS *)
 
+    
     let bstree_isLeaf bst = 
       match bst with
       | BSTree(NIL, _, NIL) -> true
       | _ -> false 
+    
     
     let bstree_left = function
       | NIL -> failwith "bstree_left : the bstree is a leaf"
@@ -40,7 +43,7 @@ module BST : AbstractBST =
       | BSTree(_, key, right) -> 
           if right = NIL then key else max right
     
-      
+    
     let bstree_successor bst = min (bstree_right bst)
     
 
@@ -74,6 +77,8 @@ module BST : AbstractBST =
     
     
     (* PUBLIC FUNCTIONS *)
+
+
     let create = NIL
     
     
