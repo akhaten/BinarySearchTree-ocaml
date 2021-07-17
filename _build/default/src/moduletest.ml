@@ -5,5 +5,5 @@ module INT = struct
     let compare a b = a - b
   end
 
-module BSTINT = BST(INT) ;;
+module BSTINT = BST(INT)
 

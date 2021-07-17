@@ -1,10 +1,10 @@
 # dune build
 # OCAMLPARAM: unset
 # Workspace root: /Users/arthur/Documents/github/BinarySearchTree-ocaml
-$ /usr/local/bin/nproc > /var/folders/vt/lt357z2s483cp146j8jhw8pr0000gn/T/dune5f53f1.output 2> /dev/null
+$ /usr/local/bin/nproc > /var/folders/vt/lt357z2s483cp146j8jhw8pr0000gn/T/dune1ecc1b.output 2> /dev/null
 # Auto-detected concurrency: 4
 # disable binary cache
-$ /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -config > /var/folders/vt/lt357z2s483cp146j8jhw8pr0000gn/T/dune8a56d9.output
+$ /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -config > /var/folders/vt/lt357z2s483cp146j8jhw8pr0000gn/T/dune9e20d9.output
 # Dune context:
 #  { name = "default"
 #  ; kind = "default"
@@ -110,8 +110,9 @@ $ /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -config > /var/folders/vt/lt357z2s48
 #      ; windows_unicode = false
 #      }
 #  }
-$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I .bstree.objs/byte -no-alias-deps -opaque -o .bstree.objs/byte/bstree.cmo -c -impl bstree.ml-gen)
-$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o bstree.cma .bstree.objs/byte/bstree.cmo)
-$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I .bstree.objs/byte -I .bstree.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o .bstree.objs/native/bstree.cmx -c -impl bstree.ml-gen)
-$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o bstree.cmxa .bstree.objs/native/bstree.cmx)
-$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I . -o bstree.cmxs bstree.cmxa)
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamldep.opt -modules -impl src/moduletest.ml) > _build/default/src/.bstree_lib.objs/moduletest.ml.d
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I src/.bstree_lib.objs/byte -no-alias-deps -opaque -open Bstree_lib -o src/.bstree_lib.objs/byte/bstree_lib__Moduletest.cmo -c -impl src/moduletest.ml)
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/bstree_lib.cma src/.bstree_lib.objs/byte/bstree_lib.cmo src/.bstree_lib.objs/byte/bstree_lib__Bstree_sig.cmo src/.bstree_lib.objs/byte/bstree_lib__Bstree.cmo src/.bstree_lib.objs/byte/bstree_lib__Moduletest.cmo)
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I src/.bstree_lib.objs/byte -I src/.bstree_lib.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Bstree_lib -o src/.bstree_lib.objs/native/bstree_lib__Moduletest.cmx -c -impl src/moduletest.ml)
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o src/bstree_lib.cmxa src/.bstree_lib.objs/native/bstree_lib.cmx src/.bstree_lib.objs/native/bstree_lib__Bstree_sig.cmx src/.bstree_lib.objs/native/bstree_lib__Bstree.cmx src/.bstree_lib.objs/native/bstree_lib__Moduletest.cmx)
+$ (cd _build/default && /Users/arthur/.opam/4.11.1/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I src -o src/bstree_lib.cmxs src/bstree_lib.cmxa)
