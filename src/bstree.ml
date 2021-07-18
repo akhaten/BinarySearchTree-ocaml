@@ -1,8 +1,10 @@
+(** Signature of comparable types *)
 module type Comparable = sig
   type t
   val compare : t -> t -> int
 end
 
+(** Binary Search Trees over the comparable type [E.t] *)
 module Make (E : Comparable) : sig
   type elt
   (** Type of elements stored in the tree *)

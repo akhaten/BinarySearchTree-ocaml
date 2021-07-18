@@ -1,2 +1,3 @@
 (library
- (name bstree))
+ (name bstree)
+ (public_name bstree))
