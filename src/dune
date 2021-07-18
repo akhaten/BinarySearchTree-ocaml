@@ -1,2 +1,2 @@
 (library
- (name bstree_lib))
+ (name bstree))

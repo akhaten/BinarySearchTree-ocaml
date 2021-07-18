@@ -1,6 +1,46 @@
-open Bstree_sig
+module type Comparable = sig
+  type t
+  val compare : t -> t -> int
+end
 
-module BST (E : Comparable ) : BST_sig with type elt = E.t = struct
+module Make (E : Comparable) : sig
+  type elt
+  (** Type of elements stored in the tree *)
+    
+  type t
+  (** Type of binary search trees *)
+  
+  val create  : t
+  (** Type of binary search trees *)
+  
+  val is_empty : t -> bool
+  (** check if a bst is empty *)
+
+  val get_key : t -> elt
+  (** Get root's key *)
+
+  val get_left : t -> t
+  (** Get root's left child *)
+  
+  val get_right : t -> t
+  (** Get root's right child *)
+  
+  val add     : t -> elt -> t
+  (** Insert an element in a tree *)
+
+  val remove  : t -> elt -> t
+  (** Remove an element of a tree.
+    If the element is already contained, behaves like identity *)
+
+  val search  : t -> elt -> bool
+  (** Efficiently search for an element in a tree *)
+
+  val min     : t -> elt
+  (** Get the minimal element of a tree according to [E.compare] *)
+  
+  val max     : t -> elt
+  (** Get the maximal element of a tree according to [E.compare] *)
+end with type elt = E.t = struct
 
   type elt = E.t
   
@@ -8,14 +48,8 @@ module BST (E : Comparable ) : BST_sig with type elt = E.t = struct
     | NIL
     | BSTree of t * elt * t
 
-
   (* PRIVATE FUNCTIONS *)
 
-  (* let bstree_isLeaf bst = 
-    match bst with
-    | BSTree(NIL, _, NIL) -> true
-    | _ -> false *)
-    
   let get_left = function
     | NIL -> failwith "bstree_left : the bstree is a leaf"
     | BSTree(left, _, _) -> left
@@ -39,19 +73,19 @@ module BST (E : Comparable ) : BST_sig with type elt = E.t = struct
       if right = NIL then key else max right
     
     
-  let _bstree_successor bst = min (get_right bst)
+  let _bstree_succ bst = min (get_right bst)
 
-  let _bstree_ancestor bst = max (get_left bst)
+  let _bstree_pred bst = max (get_left bst)
 
   let _rotate_right bst =
     match bst with
-    | NIL | BSTree (NIL, _, _) -> failwith "bstree_rotate_right : right is leaf"
+    | NIL | BSTree (NIL, _, _) -> bst
     | BSTree (BSTree (alpha, key, beta), value, right) ->
         BSTree (alpha, key, BSTree (beta, value, right))
 
   let _rotate_left bst =
     match bst with
-    | NIL | BSTree (_, _, NIL) -> failwith "bstree_rotate_left : left is leaf"
+    | NIL | BSTree (_, _, NIL) -> bst
     | BSTree (left, value, BSTree (alpha, key, beta)) ->
       BSTree (BSTree (left, value, alpha), key, beta)
 
